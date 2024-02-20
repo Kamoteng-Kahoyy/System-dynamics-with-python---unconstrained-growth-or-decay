@@ -2,7 +2,7 @@ import numpy
 import matplotlib.pyplot
 
 sim_length = 48
-growth_rate = 0.1
+growth_rate = 0.2
 delta_t = 0.01
 num_iter = int(sim_length / delta_t)
 population = numpy.zeros(num_iter)
