@@ -1,25 +1,21 @@
-# growth_model.py
+import numpy 
+import matplotlib.pyplot
 
-import numpy as np
-import matplotlib.pyplot as plt
+sim_length = 48
+growth_rate = 0.1
+delta_t = 0.01
+num_iter = int(sim_length / delta_t)
+population = numpy.zeros(num_iter)
+population[0] = 100
 
-# Function to model exponential growth
-def exponential_growth(N0, r, t):
-    return N0 * np.exp(r * t)
+for i in range(num_iter - 1):
+    growth = growth_rate * population[i]
+    population[i + 1] = population[i] + growth * delta_t
 
-# Set initial conditions
-N0 = 1  # Initial quantity
-r = 0.1  # Growth rate
+x_axis = numpy.arange(0, sim_length, delta_t)
 
-# Generate time points
-t = np.linspace(0, 10, 100)
-
-# Model exponential growth
-N = exponential_growth(N0, r, t)
-
-# Plot the results
-plt.plot(t, N, label='Exponential Growth')
-plt.xlabel('Time')
-plt.ylabel('Quantity')
-plt.legend()
-plt.show()
+matplotlib.pyplot.plot(x_axis, population)
+matplotlib.pyplot.xlabel('Time (Hour)')
+matplotlib.pyplot.ylabel('Population')
+matplotlib.pyplot.title('Malthusian Growth Model for Bacteria Population Growth')
+matplotlib.pyplot.show()
