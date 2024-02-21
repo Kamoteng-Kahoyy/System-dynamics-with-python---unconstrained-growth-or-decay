@@ -19,7 +19,7 @@ for i in range(num_iter - 1):
     population[i + 1] = population[i] + growth * delta_t
 
 # Generate time points
-x_axis = np.arange(0, sim_length, delta_t)
+x_axis = np.arange(0, sim_length, sim_length / num_iter)
 
 # Plot the results
 plt.plot(x_axis, population)
