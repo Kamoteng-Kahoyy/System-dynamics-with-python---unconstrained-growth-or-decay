@@ -1,21 +1,29 @@
-import numpy 
-import matplotlib.pyplot
+import numpy as np
+import matplotlib.pyplot as plt
 
-sim_length = 48
-growth_rate = 0.2
-delta_t = 0.01
+# Get user inputs
+sim_length = float(input("Enter simulation length in hours: "))
+growth_rate = float(input("Enter growth rate: "))
+delta_t = float(input("Enter time step (delta_t): "))
+
+# Calculate the number of iterations
 num_iter = int(sim_length / delta_t)
-population = numpy.zeros(num_iter)
-population[0] = 100
 
+# Initialize the population array
+population = np.zeros(num_iter)
+population[0] = float(input("Enter initial population: "))
+
+# Simulate population growth
 for i in range(num_iter - 1):
     growth = growth_rate * population[i]
     population[i + 1] = population[i] + growth * delta_t
 
-x_axis = numpy.arange(0, sim_length, delta_t)
+# Generate time points
+x_axis = np.arange(0, sim_length, delta_t)
 
-matplotlib.pyplot.plot(x_axis, population)
-matplotlib.pyplot.xlabel('Time (Hour)')
-matplotlib.pyplot.ylabel('Population')
-matplotlib.pyplot.title('Malthusian Growth Model for Bacteria Population Growth')
-matplotlib.pyplot.show()
+# Plot the results
+plt.plot(x_axis, population)
+plt.xlabel('Time (Hour)')
+plt.ylabel('Population')
+plt.title('Malthusian Growth Model for Bacteria Population Growth')
+plt.show()
